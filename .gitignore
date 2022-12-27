@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs
+/CurlingChallenge/.vs/CurlingChallenge
+/CurlingChallenge/CurlingChallenge/bin/Debug/net6.0
+/CurlingChallenge/CurlingChallenge/obj
+/CurlingChallenge/CurlingChallenge.Tests/bin
+/CurlingChallenge/CurlingChallenge.Tests/obj

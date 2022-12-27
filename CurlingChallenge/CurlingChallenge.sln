@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.33027.314
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurlingChallenge", "CurlingChallenge\CurlingChallenge.csproj", "{A35BA744-8FEB-4DFC-8FD5-B2D9A5E06A4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurlingChallenge.Tests", "CurlingChallenge.Tests\CurlingChallenge.Tests.csproj", "{7191F11D-141B-4B51-82BE-7B22883CF02A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A35BA744-8FEB-4DFC-8FD5-B2D9A5E06A4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A35BA744-8FEB-4DFC-8FD5-B2D9A5E06A4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A35BA744-8FEB-4DFC-8FD5-B2D9A5E06A4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A35BA744-8FEB-4DFC-8FD5-B2D9A5E06A4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7191F11D-141B-4B51-82BE-7B22883CF02A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7191F11D-141B-4B51-82BE-7B22883CF02A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7191F11D-141B-4B51-82BE-7B22883CF02A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7191F11D-141B-4B51-82BE-7B22883CF02A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA886A0E-7848-48E7-B105-056B204BDCA4}
+	EndGlobalSection
+EndGlobal

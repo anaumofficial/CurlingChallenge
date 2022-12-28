@@ -7,15 +7,16 @@
             get; set;
         }
 
-        public bool NoDiscPlaced => !PlacedDiscs.Any();
+        public bool IsEmpty => !PlacedDiscs.Any();
+
         public Plane()
         {
             PlacedDiscs = new List<Disc>();
         }
 
-        public IEnumerable<double> GetAllYCoordinates()
+        public IEnumerable<Point> GetCoordinates()
         {
-            return PlacedDiscs.Select(x => x.Center.Y);
+            return PlacedDiscs.Select(x => x.Center);
         }
 
         public void InitializeAt(double x, int radius)
@@ -25,14 +26,14 @@
             PlacedDiscs.Add(disc);
         }
 
-        public void TryPlaceNextDiscAt(double x)
+        public void PlaceDiscAt(double x)
         {
             var count = PlacedDiscs.Count();
             for (var i = count - 1; i >= 0; i--)
             {
                 var lastDiscCenter = PlacedDiscs[i];
-                lastDiscCenter.Center.TryGetNextCenterPoint(lastDiscCenter.Radius, x, out Point center);
-                if (center == null)
+                var successful = lastDiscCenter.Center.TryGetNextCenterPoint(lastDiscCenter.Radius, x, out Point center);
+                if (!successful)
                 {
                     if (i == 0)
                     {
@@ -45,7 +46,7 @@
                 else
                 {
                     var disc = new Disc(lastDiscCenter.Radius);
-                    disc.TryPlaceAt(center);
+                    disc.SetCenterAt(center);
                     PlacedDiscs.Add(disc);
                     break;
                 }

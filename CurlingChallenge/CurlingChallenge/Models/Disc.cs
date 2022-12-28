@@ -11,6 +11,7 @@
         {
             get; private set;
         }
+
         public Disc(int radius)
         {
             Radius = radius;
@@ -22,7 +23,7 @@
             Center = center;
         }
 
-        public void TryPlaceAt(Point center)
+        public void SetCenterAt(Point center)
         {
             Center = center;
         }

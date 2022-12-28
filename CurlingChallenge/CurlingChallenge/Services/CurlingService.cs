@@ -18,13 +18,13 @@ namespace CurlingChallenge.Services
             while (numberOfDiscs > 0)
             {
                 var x = _xCoordinateGenerator.GenerateX();
-                if (plane.NoDiscPlaced)
+                if (plane.IsEmpty)
                 {
                     plane.InitializeAt(x, radius);
                 }
                 else
                 {
-                    plane.TryPlaceNextDiscAt(x);
+                    plane.PlaceDiscAt(x);
                 }
                 numberOfDiscs--;
             }

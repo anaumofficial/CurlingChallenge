@@ -19,7 +19,7 @@ namespace CurlingChallenge.Controllers
         public IActionResult StartCurling(int numberOfDiscs, int radius)
         {
             _curlingService.Start(numberOfDiscs, radius, out Plane plane);
-            return new OkObjectResult(plane.GetAllYCoordinates());
+            return new OkObjectResult(plane.GetCoordinates());
         }
     }
 }

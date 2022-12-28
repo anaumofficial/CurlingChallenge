@@ -22,8 +22,7 @@
         public void InitializeAt(double x, int radius)
         {
             var disc = new Disc(radius);
-            new Point(x, 0).InitCenter(radius, out Point center);
-            disc.MoveTo(center);
+            disc.InitializeAt(x);
             PlacedDiscs.Add(disc);
         }
 
@@ -33,21 +32,19 @@
             for (var i = count - 1; i >= 0; i--)
             {
                 var lastDisc = PlacedDiscs[i];
-                var successful = lastDisc.Center.TryFindNextCenter(lastDisc.Radius, x, out Point center);
-                if (!successful)
+                var successful = lastDisc.TryPlaceNextDiscAt(x, out Disc disc);
+                if (successful)
+                {
+                    PlacedDiscs.Add(disc);
+                    break;
+                }
+                else
                 {
                     if (i == 0)
                     {
                         InitializeAt(x, lastDisc.Radius);
                     }
                     continue;
-                }
-                else
-                {
-                    var disc = new Disc(lastDisc.Radius);
-                    disc.MoveTo(center);
-                    PlacedDiscs.Add(disc);
-                    break;
                 }
             }
         }

@@ -23,7 +23,7 @@
             center = new Point(X, Y + radius);
         }
 
-        public bool TryGetNextCenterPoint(int radius, double x, out Point nextCenter)
+        public bool TryFindNextCenter(int radius, double x, out Point nextCenter)
         {
             var pythagoreanEquation = 4.0 * Math.Pow(radius, 2) - Math.Pow(x - X, 2);
             if (pythagoreanEquation >= 0)

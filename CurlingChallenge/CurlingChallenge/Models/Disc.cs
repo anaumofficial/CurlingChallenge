@@ -17,13 +17,7 @@
             Radius = radius;
         }
 
-        public void InitializeAt(double x)
-        {
-            new Point(x, 0).InitCenter(Radius, out Point center);
-            Center = center;
-        }
-
-        public void SetCenterAt(Point center)
+        public void MoveTo(Point center)
         {
             Center = center;
         }

@@ -32,19 +32,19 @@
             var count = PlacedDiscs.Count();
             for (var i = count - 1; i >= 0; i--)
             {
-                var lastDiscCenter = PlacedDiscs[i];
-                var successful = lastDiscCenter.Center.TryFindNextCenter(lastDiscCenter.Radius, x, out Point center);
+                var lastDisc = PlacedDiscs[i];
+                var successful = lastDisc.Center.TryFindNextCenter(lastDisc.Radius, x, out Point center);
                 if (!successful)
                 {
                     if (i == 0)
                     {
-                        InitializeAt(x, lastDiscCenter.Radius);
+                        InitializeAt(x, lastDisc.Radius);
                     }
                     continue;
                 }
                 else
                 {
-                    var disc = new Disc(lastDiscCenter.Radius);
+                    var disc = new Disc(lastDisc.Radius);
                     disc.MoveTo(center);
                     PlacedDiscs.Add(disc);
                     break;

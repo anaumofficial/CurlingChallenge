@@ -11,7 +11,6 @@ namespace CurlingChallenge
 
             // Add services to the container.
             builder.Services.AddScoped<ICurlingService, CurlingService>();
-            builder.Services.AddScoped<ICoordinatesCalculator, CoordinatesCalculator>();
             //builder.Services.AddSingleton<IXCoordinateGenerator, XCoordinateGeneratorWithStaticOutput>(); //for testing
             builder.Services.AddSingleton<IXCoordinateGenerator, XCoordinateGenerator>(); //original
 

@@ -4,6 +4,6 @@ namespace CurlingChallenge.Services.Interfaces
 {
     public interface ICurlingService
     {
-        Plane Start(int discNumber, int radius);
+        void Start(int discNumber, int radius, out Plane plane);
     }
 }

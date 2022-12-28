@@ -1,3 +1,4 @@
+using CurlingChallenge.Models;
 using CurlingChallenge.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,18 +9,16 @@ namespace CurlingChallenge.Controllers
     public class CurlingController :ControllerBase
     {
         private readonly ICurlingService _curlingService;
-        private readonly ILogger<CurlingController> _logger;
 
-        public CurlingController(ICurlingService curlingService, ILogger<CurlingController> logger)
+        public CurlingController(ICurlingService curlingService)
         {
             _curlingService = curlingService;
-            _logger = logger;
         }
 
         [HttpPost(Name = "Start")]
-        public IActionResult StartCurling(int n, int r)
+        public IActionResult StartCurling(int numberOfDiscs, int radius)
         {
-            var plane = _curlingService.Start(n, r);
+            _curlingService.Start(numberOfDiscs, radius, out Plane plane);
             return new OkObjectResult(plane.GetAllYCoordinates());
         }
     }

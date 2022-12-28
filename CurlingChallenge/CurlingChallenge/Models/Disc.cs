@@ -11,10 +11,19 @@
         {
             get; private set;
         }
-
-        public Disc(int radius, Point center)
+        public Disc(int radius)
         {
             Radius = radius;
+        }
+
+        public void InitializeAt(double x)
+        {
+            new Point(x, 0).InitCenter(Radius, out Point center);
+            Center = center;
+        }
+
+        public void TryPlaceAt(Point center)
+        {
             Center = center;
         }
     }

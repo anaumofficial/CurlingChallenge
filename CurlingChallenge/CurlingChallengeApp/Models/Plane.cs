@@ -24,6 +24,7 @@ namespace CurlingChallenge.Models
 
         public void AddDisc(Disc dics)
         {
+            PlacedDiscs.Add(dics);
         }
     }
 }

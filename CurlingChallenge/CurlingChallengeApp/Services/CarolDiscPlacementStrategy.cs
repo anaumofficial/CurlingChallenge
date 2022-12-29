@@ -1,22 +1,20 @@
 ﻿using CurlingChallenge.Models;
-using CurlingChallenge.Services.Interfaces;
 using CurlingChallengeApp.Services.Interfaces;
+using System;
 using System.Linq;
 
 namespace CurlingChallengeApp.Services
 {
-    public class DiscPlacementStrategy
+    public class CarolDiscPlacementStrategy :IDiscPlacementStrategy
     {
         private readonly Plane _plane;
-        private readonly ICoordinatesCalculator _coordinatesCalculator;
 
-        public DiscPlacementStrategy(Plane plane, ICoordinatesCalculator coordinatesCalculator)
+        public CarolDiscPlacementStrategy(Plane plane)
         {
             _plane = plane;
-            _coordinatesCalculator = coordinatesCalculator;
         }
 
-        internal Point Place(Disc disc)
+        public Point Place(Disc disc)
         {
             if (_plane.IsEmpty)
             {
@@ -28,7 +26,7 @@ namespace CurlingChallengeApp.Services
                 for (var i = count - 1; i >= 0; i--)
                 {
                     var lastDisc = _plane.PlacedDiscs[i];
-                    var center = _coordinatesCalculator.CalculateCenter(lastDisc.Center, disc.Center.X, disc.Radius);
+                    var center = CalculateCenter(lastDisc.Center, disc.Center.X, disc.Radius);
                     if (center == null)
                     {
                         if (i == 0)
@@ -44,6 +42,17 @@ namespace CurlingChallengeApp.Services
                 }
                 return new Point(disc.Center.X, disc.Radius);
             }
+        }
+
+        private Point CalculateCenter(Point center, double x, int radius)
+        {
+            var pythagoreanEquation = 4.0 * Math.Pow(radius, 2) - Math.Pow(x - center.X, 2);
+            if (pythagoreanEquation >= 0)
+            {
+                var y = center.Y + Math.Sqrt(pythagoreanEquation);
+                return new Point(x, Math.Round(y, 11, MidpointRounding.AwayFromZero));
+            }
+            return null;
         }
     }
 }

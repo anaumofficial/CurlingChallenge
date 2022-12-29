@@ -29,7 +29,6 @@ namespace CurlingChallengeApp
             services.AddScoped<ICurlingService, CurlingService>();
             //services.AddSingleton<IXCoordinateGenerator, XCoordinateGeneratorWithStaticOutput>(); //for testing
             services.AddSingleton<IXCoordinateGenerator, XCoordinateGenerator>(); //original
-            services.AddScoped<ICoordinatesCalculator, CoordinatesCalculator>();
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

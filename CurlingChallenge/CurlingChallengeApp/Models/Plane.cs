@@ -21,5 +21,9 @@ namespace CurlingChallenge.Models
         {
             return PlacedDiscs.Select(x => x.Center);
         }
+
+        public void AddDisc(Disc dics)
+        {
+        }
     }
 }

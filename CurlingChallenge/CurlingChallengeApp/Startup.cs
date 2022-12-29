@@ -13,9 +13,12 @@ namespace CurlingChallengeApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _environment;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            _environment = environment;
         }
 
         public IConfiguration Configuration
@@ -28,8 +31,14 @@ namespace CurlingChallengeApp
         {
             services.AddScoped<ICurlingService, CurlingService>();
             services.AddScoped<IDiscPlacementStrategy, CarolDiscPlacementStrategy>();
-            //services.AddSingleton<IXCoordinateGenerator, XCoordinateGeneratorWithStaticOutput>(); //for testing
-            services.AddSingleton<IXCoordinateGenerator, XCoordinateGenerator>(); //original
+            if (_environment.IsEnvironment("Test")) //for testing static x values
+            {
+                services.AddSingleton<IXCoordinateGenerator, XCoordinateGeneratorWithStaticOutput>();
+            }
+            else
+            {
+                services.AddSingleton<IXCoordinateGenerator, XCoordinateGenerator>(); //original
+            }
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

@@ -1,0 +1,28 @@
+<h1 id="tableLabel">  Carol is currently curling.</h1>
+
+<p>This component visualize curling challenge results.</p>
+<p *ngIf="!coordinates">Please, enter values to start challenge.</p>
+<form *ngIf="!coordinates" #itemForm="ngForm" (ngSubmit)="onSubmit(itemForm.value)">
+  <label for="discNumber">Disc number</label>
+  <input type="number" id="discNumber" class="form-control" ng-min="1"  name="discNumber" ngModel required />
+  <label for="radius">Disc radius</label>
+  <input type="number" id="radius" class="form-control" name="radius" ng-min="1" ng-max="1000" ngModel required />
+  <button type="submit"> Start </button>
+</form>
+
+<canvas #canvas width="1000" height="1000"></canvas>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="coordinates">
+  <thead>
+    <tr>
+      <th>x</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let coordinate of coordinates">
+      <td>{{ coordinate.x }}</td>
+      <td>{{ coordinate.y }}</td>
+    </tr>
+  </tbody>
+</table>

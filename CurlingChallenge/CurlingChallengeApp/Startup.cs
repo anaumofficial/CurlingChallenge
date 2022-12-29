@@ -27,6 +27,7 @@ namespace CurlingChallengeApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ICurlingService, CurlingService>();
+            services.AddScoped<IDiscPlacementStrategy, CarolDiscPlacementStrategy>();
             //services.AddSingleton<IXCoordinateGenerator, XCoordinateGeneratorWithStaticOutput>(); //for testing
             services.AddSingleton<IXCoordinateGenerator, XCoordinateGenerator>(); //original
             services.AddControllersWithViews();

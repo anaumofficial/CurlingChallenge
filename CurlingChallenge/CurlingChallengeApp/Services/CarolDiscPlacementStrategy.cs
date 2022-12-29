@@ -7,25 +7,28 @@ namespace CurlingChallengeApp.Services
 {
     public class CarolDiscPlacementStrategy :IDiscPlacementStrategy
     {
-        private readonly Plane _plane;
-
-        public CarolDiscPlacementStrategy(Plane plane)
+        private Plane Plane
         {
-            _plane = plane;
+            get; set;
+        }
+
+        public void Init(Plane plane)
+        {
+            Plane = plane;
         }
 
         public Point Place(Disc disc)
         {
-            if (_plane.IsEmpty)
+            if (Plane.IsEmpty)
             {
                 return new Point(disc.Center.X, disc.Radius);
             }
             else
             {
-                var count = _plane.PlacedDiscs.Count();
+                var count = Plane.PlacedDiscs.Count();
                 for (var i = count - 1; i >= 0; i--)
                 {
-                    var lastDisc = _plane.PlacedDiscs[i];
+                    var lastDisc = Plane.PlacedDiscs[i];
                     var center = CalculateCenter(lastDisc.Center, disc.Center.X, disc.Radius);
                     if (center == null)
                     {

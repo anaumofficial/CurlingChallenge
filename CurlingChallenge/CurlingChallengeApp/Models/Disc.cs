@@ -12,8 +12,9 @@
             get; private set;
         }
 
-        public Disc(int radius)
+        public Disc(int radius, Point center)
         {
+            Center = center;
             Radius = radius;
         }
 

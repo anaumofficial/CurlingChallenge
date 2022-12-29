@@ -9,21 +9,18 @@ namespace CurlingChallengeApp.Services
     {
         private readonly Plane _plane;
         private readonly ICoordinatesCalculator _coordinatesCalculator;
-        private readonly IXCoordinateGenerator _xCoordinateGenerator;
 
-        public DiscPlacementStrategy(Plane plane, ICoordinatesCalculator coordinatesCalculator, IXCoordinateGenerator xCoordinateGenerator)
+        public DiscPlacementStrategy(Plane plane, ICoordinatesCalculator coordinatesCalculator)
         {
             _plane = plane;
             _coordinatesCalculator = coordinatesCalculator;
-            _xCoordinateGenerator = xCoordinateGenerator;
         }
 
         internal Point Place(Disc disc)
         {
-            var x = _xCoordinateGenerator.GenerateX();
             if (_plane.IsEmpty)
             {
-                return new Point(x, disc.Radius);
+                return new Point(disc.Center.X, disc.Radius);
             }
             else
             {
@@ -31,12 +28,12 @@ namespace CurlingChallengeApp.Services
                 for (var i = count - 1; i >= 0; i--)
                 {
                     var lastDisc = _plane.PlacedDiscs[i];
-                    var center = _coordinatesCalculator.CalculateCenter(lastDisc.Center, x, disc.Radius);
+                    var center = _coordinatesCalculator.CalculateCenter(lastDisc.Center, disc.Center.X, disc.Radius);
                     if (center == null)
                     {
                         if (i == 0)
                         {
-                            return new Point(x, disc.Radius);
+                            return new Point(disc.Center.X, disc.Radius);
                         }
                         continue;
                     }
@@ -45,7 +42,7 @@ namespace CurlingChallengeApp.Services
                         return center;
                     }
                 }
-                return new Point(x, disc.Radius);
+                return new Point(disc.Center.X, disc.Radius);
             }
         }
     }

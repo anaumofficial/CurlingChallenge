@@ -2,7 +2,7 @@
 using CurlingChallenge.Services.Interfaces;
 using CurlingChallengeApp.Services;
 using CurlingChallengeApp.Services.Interfaces;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 
 namespace CurlingChallenge.Services
@@ -21,7 +21,7 @@ namespace CurlingChallenge.Services
         public void Start(int numberOfDiscs, int radius, out Plane plane)
         {
             plane = new Plane();
-            var strategy = new DiscPlacementStrategy(plane, _coordinatesCalculator, _xCoordinateGenerator);
+            var strategy = new DiscPlacementStrategy(plane, _coordinatesCalculator);
             foreach (var disc in Discs(numberOfDiscs, radius))
             {
                 var centerPoint = strategy.Place(disc);
@@ -32,13 +32,12 @@ namespace CurlingChallenge.Services
 
         private IEnumerable<Disc> Discs(int numberOfDiscs, int radius)
         {
-            var discs = new List<Disc>();
             while (numberOfDiscs > 0)
             {
-                discs.Add(new Disc(radius));
+                var x = _xCoordinateGenerator.GenerateX();
+                yield return new Disc(radius, new Point(x, Math.Pow(10, 100)));
                 numberOfDiscs--;
             }
-            return discs;
         }
     }
 }

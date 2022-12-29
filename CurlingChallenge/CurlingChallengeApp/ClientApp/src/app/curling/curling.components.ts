@@ -29,10 +29,10 @@ export class CurlingComponent implements OnInit {
   onSubmit(data) {
     this.discNumber = data.discNumber;
     this.radius = data.radius;
-    this.loadDiscPoints();
+    this.fetchDiscCoordinates();
   }
 
-  loadDiscPoints() {
+  fetchDiscCoordinates() {
     const url = this.baseUrl + 'curling';
     var params = new HttpParams();
     params = params.set("discNumber", this.discNumber.toString());
@@ -46,9 +46,11 @@ export class CurlingComponent implements OnInit {
 
   drawDiscs() {
     this.ctx.canvas.style.border = '1px solid #000';
-    this.ctx.fillStyle = "#00A308";
-    this.ctx.strokeStyle = "#c60";
+    this.ctx.fillStyle = "#735beb";
+    this.ctx.strokeStyle = "#000000";
     this.ctx.lineWidth = 3;
+    this.ctx.translate(0, this.ctx.canvas.height);
+    this.ctx.scale(1, -1);
     this.coordinates.forEach(centerPoint => {
       this.ctx.beginPath();
       this.ctx.arc(centerPoint.x, centerPoint.y, this.radius, 0, Math.PI * 2, true);

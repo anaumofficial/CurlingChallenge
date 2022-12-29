@@ -2,8 +2,6 @@
 
 <p>This component visualize curling challenge results.</p>
 <p *ngIf="!coordinates">Please, enter values to start challenge.</p>
-<p *ngIf="coordinates">The upper-left corner of the plane has the coordinates (0,0)</p>
-
 <form *ngIf="!coordinates" #itemForm="ngForm" (ngSubmit)="onSubmit(itemForm.value)">
   <label for="discNumber">Disc number</label>
   <input type="number" id="discNumber" class="form-control" ng-min="1"  name="discNumber" ngModel required />
